@@ -12,43 +12,43 @@ var speedSlider2;
 
 var input1;
 var input2;
+var input3;
+var box1;
+var box2;
 
 
 function setup() {
-  var cnv = createCanvas(1000, 500);
+  var cnv = createCanvas(1200, 560);
   cnv.parent("myContainer");
   strokeWeight(.25);
   stroke(0);
-  speedSlider = createSlider(-90,90,0);
-  speedSlider2 = createSlider(-90,90,0);
-  speedSlider.position(100,430);
-  speedSlider2.position(100,460);
+  speedSlider = createSlider(-95,95,0);
+  speedSlider2 = createSlider(-95,95,0);
+  speedSlider.position(145,496);
+  speedSlider2.position(145,538);
   speedSlider.parent("sliderPos");
   speedSlider2.parent("sliderPos2");
-  speedSlider.style("width", "200px");
-  speedSlider2.style("width", "200px");
-  //speedSlider.oninput("setSpeed1()");
-  //speedSlider.style("position", "absolute");
-  //speedSlider.style("top", "0px");
-  //speedSlider.style("left", "0px");
+  speedSlider.style("width", "130px");
+  speedSlider2.style("width", "130px");
 
-  input1 = createInput();
-  input1.parent("buttonPos");
-  input1.position(300, 430);
-  input1.style("width", "30px");
- 
-  input2 = createInput();
-  input2.parent("buttonPos2");
-  input2.position(300, 460);
-  input2.style("width", "30px");
- 
+  box1 = document.getElementById("box1");
+  box2 = document.getElementById("box2");
 
   
+  input1 = createInput("0");
+  input1.parent("buttonPos");
+  input1.position(80, 497);
+  input1.style("width", "30px");
+ 
+  input2 = createInput("0");
+  input2.parent("buttonPos2");
+  input2.position(80, 537);
+  input2.style("width", "30px");  
 }
 
 function draw() {
   background(255);
-  
+  console.log(box1.checked);
  
   //borders
   line(0, 0, 0, height);
@@ -76,11 +76,15 @@ function draw() {
   line(0, 0, -width, beta1*width);
   
   //black equitemp lines 
+  
   strokeWeight(.5);
+ 
   for (var i=0; i<2*height; i=i+spacing1) {
-  	line(0, -i, width, -i-beta1*width);
-  	line(0, -i, -width, -i+beta1*width);
-
+  	if (box1.checked==true){
+  		line(0, -i, width, -i-beta1*width);
+  		line(0, -i, -width, -i+beta1*width);
+  	}
+  
  //black clocks 
     strokeWeight(1);
   	fill(255);
@@ -91,16 +95,17 @@ function draw() {
   	strokeWeight(.5);
     fill(0);
  	//ellipse((1/(1-beta1*beta2))*beta2*i, -(1/(1-beta1*beta2))*i, 4, 4);
-
-  }
+}
+  
   
   //red equitemps
   stroke(255,0,0);
-  for (var i=0; i<2*height; i=i+spacing2) {
-  	line(0, -i, width, -i-beta2*width);
-  	line(0, -i, -width, -i+beta2*width);
+  if (box2.checked==true){
+    for (var i=0; i<2*height; i=i+spacing2) {
+  	  line(0, -i, width, -i-beta2*width);
+  	  line(0, -i, -width, -i+beta2*width);
+    }
   }
-
   //red axes
   strokeWeight(1);
   line(0, 0, beta2*height, -height);
@@ -127,7 +132,36 @@ function draw() {
 
   pop();
   fill(255);
-  rect(0,400,300,100);
+  //rect(0,400,300,100);
+  fill(0);
+  textSize(16);
+  textAlign(CENTER);
+  text("Show Lines of\nSimultaneity", 336, 442);
+ //text("Show Lines of Simultaneity", 300, 447);
+  text("0", 206, 483);
+  textSize(16);
+  text("-0.95", 142, 483);
+  textSize(16);
+  text("0.95", 268, 483);
+  strokeWeight(1);
+  line(204,490,204,510); 
+  line(145,490,145,510); 
+  line(264,490,264,510); 
+  
+  line(204,530,204,550); 
+  line(145,530,145,550); 
+  line(264,530,264,550); 
+  
+
+
+  strokeWeight(.25);
+  text("Velocity:", 40, 507);
+  stroke(255,0,0);
+  fill(255, 0, 0);
+  text("Velocity:", 40, 547);
+
+  
+        
 }
 
 function setSpeed1() {
