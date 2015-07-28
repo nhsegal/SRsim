@@ -7,8 +7,17 @@
 	<body>
        
 		<div id="myContainer"></div>
-		<!-- <span id="sliderPos" oninput="setSpeed1()">Black Velocity:</span> 
+		 <span id="sliderPos" oninput="setSpeed1()">Black Velocity:</span> 
+		 <span id="buttonPos" onchange="
+		 	beta1=input.value;
+		 	
+  			speedSlider.value(input.value()*100);
+  			setSpeed1();
+		 	">
+		 	Black Velocity:</span> 
 		 <br>
+
+		 <!--
          <span id="sliderPos2" oninput="setSpeed2()" style= "position:absolute">Red Velocity:</span>
          -->
 	</body>

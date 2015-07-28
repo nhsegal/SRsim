@@ -1,5 +1,5 @@
 
-var beta1 = -0.0;
+var beta1 = 0;
 var beta2 = 0;
 var gamma1 = 1/Math.sqrt(1 - beta1*beta1);
 var gamma2 = 1/Math.sqrt(1 - beta2*beta2);
@@ -21,7 +21,7 @@ function setup() {
   speedSlider2 = createSlider(-90,90,0);
   speedSlider.position(100,430);
   speedSlider2.position(100,460);
-  //speedSlider.parent("myContainer");
+  speedSlider.parent("sliderPos");
   //speedSlider2.parent("sliderPos2");
   speedSlider.style("width", "200px");
 
@@ -32,23 +32,25 @@ function setup() {
   //speedSlider.style("left", "0px");
 
   input = createInput();
-  input.position(20, 65);
+  input.parent("buttonPos");
+  input.position(300, 430);
+ 
 
   button = createButton('submit');
-  button.position(150, 65);
+  button.position(350, 430);
   button.mousePressed(function (){
   	speedSlider.value(input.value()*100);
   	setSpeed1();
   });
 
-  console.log(speedSlider);
 
+
+/*
   speedSlider.oninput = function (){ 
-  	console.log("dfa");
-  	//input.value(speedSlider.value()*100);
-  	//setSpeed1();
+  	input.value(speedSlider.value()*100);
+  	setSpeed1();
   };
-
+*/
   
   
 }
