@@ -9,8 +9,10 @@ var spacing2 = spacing/gamma2;
 
 var speedSlider;
 var speedSlider2;
-var speedInput;
-var button;
+
+var input1;
+var input2;
+
 
 function setup() {
   var cnv = createCanvas(1000, 500);
@@ -22,44 +24,32 @@ function setup() {
   speedSlider.position(100,430);
   speedSlider2.position(100,460);
   speedSlider.parent("sliderPos");
-  //speedSlider2.parent("sliderPos2");
+  speedSlider2.parent("sliderPos2");
   speedSlider.style("width", "200px");
-
   speedSlider2.style("width", "200px");
   //speedSlider.oninput("setSpeed1()");
   //speedSlider.style("position", "absolute");
   //speedSlider.style("top", "0px");
   //speedSlider.style("left", "0px");
 
-  input = createInput();
-  input.parent("buttonPos");
-  input.position(300, 430);
+  input1 = createInput();
+  input1.parent("buttonPos");
+  input1.position(300, 430);
+  input1.style("width", "30px");
+ 
+  input2 = createInput();
+  input2.parent("buttonPos2");
+  input2.position(300, 460);
+  input2.style("width", "30px");
  
 
-  button = createButton('submit');
-  button.position(350, 430);
-  button.mousePressed(function (){
-  	speedSlider.value(input.value()*100);
-  	setSpeed1();
-  });
-
-
-
-/*
-  speedSlider.oninput = function (){ 
-  	input.value(speedSlider.value()*100);
-  	setSpeed1();
-  };
-*/
-  
   
 }
 
 function draw() {
   background(255);
-  //setSpeed1();
-  setSpeed2();
-
+  
+ 
   //borders
   line(0, 0, 0, height);
   line(0, height, 0, height);
@@ -117,13 +107,12 @@ function draw() {
   line(0, 0, beta2*height, -height);
   line(0, 0, width, -beta2*width);
   line(0, 0, -width, beta2*width);
-
   strokeWeight(.25);
 
 
  for (var i=0; i<2*height; i=i+spacing2) {
   
-  //red dots on black t axis
+//red dots on black t axis
   	//fill(255,0,0);
   	//ellipse((1/(1-beta1*beta2))*beta1*i, -(1/(1-beta1*beta2))*i, 5, 5);
 
@@ -145,13 +134,13 @@ function setSpeed1() {
 	beta1 = speedSlider.value()/100;
 	gamma1 = 1/Math.sqrt(1 - beta1*beta1);
 	spacing1 = spacing/gamma1;
-	button.value(beta1);
-	input.value(beta1);
+	input1.value(beta1);
 }
 
 function setSpeed2() {
 	beta2 = speedSlider2.value()/100;
 	gamma2 = 1/Math.sqrt(1 - beta2*beta2);
 	spacing2 = spacing/gamma2;
+	input2.value(beta2);
 }
 

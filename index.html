@@ -7,15 +7,22 @@
 	<body>
        
 		<div id="myContainer"></div>
-		 <span id="sliderPos" oninput="setSpeed1()">Black Velocity:</span> 
-		 <span id="buttonPos" onchange="
-		 	beta1=input.value;
-		 	
-  			speedSlider.value(input.value()*100);
+		<span id="sliderPos" oninput="setSpeed1()"></span> 
+		<span id="buttonPos" onchange="
+		 	beta1=input1.value;
+  			speedSlider.value(input1.value()*100);
   			setSpeed1();
 		 	">
-		 	Black Velocity:</span> 
-		 <br>
+		</span> 
+
+		<span id="sliderPos2" oninput="setSpeed2()"></span> 
+		<span id="buttonPos2" onchange="
+		 	beta2=input2.value;
+  			speedSlider2.value(input2.value()*100);
+  			setSpeed2();
+		 	">
+		</span> 
+		<br>
 
 		 <!--
          <span id="sliderPos2" oninput="setSpeed2()" style= "position:absolute">Red Velocity:</span>
