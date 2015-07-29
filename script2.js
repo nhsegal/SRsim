@@ -22,8 +22,8 @@ function setup() {
   cnv.parent("myContainer");
   strokeWeight(.25);
   stroke(0);
-  speedSlider = createSlider(-95,95,0);
-  speedSlider2 = createSlider(-95,95,0);
+  speedSlider = createSlider(-196,196,0);
+  speedSlider2 = createSlider(-196,196,0);
   speedSlider.position(145,496);
   speedSlider2.position(145,538);
   speedSlider.parent("sliderPos");
@@ -140,9 +140,9 @@ function draw() {
  //text("Show Lines of Simultaneity", 300, 447);
   text("0", 206, 483);
   textSize(16);
-  text("-0.95", 142, 483);
+  text("-0.98", 142, 483);
   textSize(16);
-  text("0.95", 268, 483);
+  text("0.98", 268, 483);
   strokeWeight(1);
   line(204,490,204,510); 
   line(145,490,145,510); 
@@ -165,14 +165,14 @@ function draw() {
 }
 
 function setSpeed1() {
-	beta1 = speedSlider.value()/100;
+	beta1 = speedSlider.value()/200;
 	gamma1 = 1/Math.sqrt(1 - beta1*beta1);
 	spacing1 = spacing/gamma1;
 	input1.value(beta1);
 }
 
 function setSpeed2() {
-	beta2 = speedSlider2.value()/100;
+	beta2 = speedSlider2.value()/200;
 	gamma2 = 1/Math.sqrt(1 - beta2*beta2);
 	spacing2 = spacing/gamma2;
 	input2.value(beta2);
