@@ -14,6 +14,8 @@ let input2;
 let input3;
 let box1;
 let box2;
+let modalButton;
+let span;
 
 function setup() {
   let cnv = createCanvas(1200, 660);
@@ -28,21 +30,34 @@ function setup() {
   speedSlider2.parent("sliderPos2");
   speedSlider.style("width", "130px");
   speedSlider2.style("width", "130px");
+  modalButton = createButton("Questions and Answers");
+  modalButton.position(width - 155, height - 20);
+  modalButton.mousePressed(showModal)
 
-  box1 = document.getElementById("box1");
-  box2 = document.getElementById("box2");
-  box3 = document.getElementById("box3");
-  box4 = document.getElementById("box4");
+  box1 = createCheckbox("", true);
+  box2 = createCheckbox("", false);
+  box3 = createCheckbox("", false);
+  box4 = createCheckbox("", false);
+
+  box1.position(335, 598);
+  box2.position(335, 636);
+  box3.position(442, 598);
+  box4.position(442, 636);
 
   input1 = createInput("0");
   input1.parent("buttonPos");
-  input1.position(80, 597);
+  input1.position(84, 597);
   input1.style("width", "30px");
 
   input2 = createInput(".6");
   input2.parent("buttonPos2");
-  input2.position(80, 637);
+  input2.position(84, 637);
   input2.style("width", "30px");
+  const modal = document.getElementById('modal');
+  span = document.getElementsByClassName("close")[0];
+  span.onclick = function() {
+    modal.classList.remove("my-class");
+  }
 }
 
 function draw() {
@@ -76,7 +91,7 @@ function draw() {
 
   //black equitemp lines
   for (let i = 0; i < 2 * height; i = i + spacing1) {
-    if (box1.checked == true) {
+    if (box1.checked() == true) {
       strokeWeight(0.6);
       for (let dash = 0; dash < width; dash = dash + 12) {
         line(0 + dash, i + dash * beta1, dash + 6, i + beta1 * (dash + 6));
@@ -84,22 +99,50 @@ function draw() {
       }
     }
     //black light signals
-    if (box3.checked == true) {
+    if (box3.checked() == true) {
       strokeWeight(0.6);
       stroke(0, 100, 0);
       if (beta1 < beta2) {
         line(
           gamma1 * gamma1 * beta1 * i,
           gamma1 * gamma1 * i,
-          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i *(1+beta2) * gamma2 * gamma2,
-          gamma1 * gamma1 * i + gamma1 * gamma1 * (beta2 - beta1) * i * (1+beta2) * gamma2 * gamma2
+          gamma1 * gamma1 * beta1 * i +
+            gamma1 *
+              gamma1 *
+              (beta2 - beta1) *
+              i *
+              (1 + beta2) *
+              gamma2 *
+              gamma2,
+          gamma1 * gamma1 * i +
+            gamma1 *
+              gamma1 *
+              (beta2 - beta1) *
+              i *
+              (1 + beta2) *
+              gamma2 *
+              gamma2
         );
       } else {
         line(
           gamma1 * gamma1 * beta1 * i,
           gamma1 * gamma1 * i,
-          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i *(1-beta2) * gamma2 * gamma2,
-          gamma1 * gamma1 * i - gamma1 * gamma1 * (beta2 - beta1) * i * (1-beta2) * gamma2 * gamma2
+          gamma1 * gamma1 * beta1 * i +
+            gamma1 *
+              gamma1 *
+              (beta2 - beta1) *
+              i *
+              (1 - beta2) *
+              gamma2 *
+              gamma2,
+          gamma1 * gamma1 * i -
+            gamma1 *
+              gamma1 *
+              (beta2 - beta1) *
+              i *
+              (1 - beta2) *
+              gamma2 *
+              gamma2
         );
       }
     }
@@ -120,7 +163,7 @@ function draw() {
     scale(1, -1);
     text((i / spacing1).toFixed(0), 0, 0);
     pop();
-    //ellipse((1/(1-beta1*beta2))*beta2*i, -(1/(1-beta1*beta2))*i, 4, 4);
+    
   }
 
   //red axes
@@ -132,7 +175,7 @@ function draw() {
 
   //red equitemps
   for (let i = 0; i < 2 * height; i = i + spacing2) {
-    if (box2.checked == true) {
+    if (box2.checked() == true) {
       strokeWeight(0.6);
       for (let dash = 0; dash < width; dash = dash + 12) {
         line(dash, i + dash * beta2, dash + 6, i + beta2 * (dash + 6));
@@ -140,22 +183,50 @@ function draw() {
       }
     }
 
-    if (box4.checked == true) {
+    if (box4.checked() == true) {
       strokeWeight(0.6);
       stroke(0, 100, 0);
       if (beta1 < beta2) {
         line(
           gamma2 * gamma2 * beta2 * i,
           gamma2 * gamma2 * i,
-          gamma2 * gamma2 * beta2 * i - gamma2 * gamma2 * (beta2 - beta1) * i *(1-beta1) * gamma1 * gamma1,
-          gamma2 * gamma2 * i + gamma2 * gamma2 * (beta2 - beta1) * i*(1-beta1)*gamma1*gamma1
+          gamma2 * gamma2 * beta2 * i -
+            gamma2 *
+              gamma2 *
+              (beta2 - beta1) *
+              i *
+              (1 - beta1) *
+              gamma1 *
+              gamma1,
+          gamma2 * gamma2 * i +
+            gamma2 *
+              gamma2 *
+              (beta2 - beta1) *
+              i *
+              (1 - beta1) *
+              gamma1 *
+              gamma1
         );
       } else {
         line(
           gamma2 * gamma2 * beta2 * i,
           gamma2 * gamma2 * i,
-          gamma2 * gamma2 * beta2 * i - gamma2 * gamma2 * (beta2 - beta1) * i *(1+beta1) * gamma1 * gamma1,
-          gamma2 * gamma2 * i - gamma2 * gamma2 * (beta2 - beta1) * i*(1+beta1)*gamma1*gamma1
+          gamma2 * gamma2 * beta2 * i -
+            gamma2 *
+              gamma2 *
+              (beta2 - beta1) *
+              i *
+              (1 + beta1) *
+              gamma1 *
+              gamma1,
+          gamma2 * gamma2 * i -
+            gamma2 *
+              gamma2 *
+              (beta2 - beta1) *
+              i *
+              (1 + beta1) *
+              gamma1 *
+              gamma1
         );
       }
     }
@@ -222,11 +293,6 @@ function setSpeed2() {
   input2.value(beta2);
 }
 
-function coordsToPix(coord) {
-  return {
-    x: width / 2 + coord.x * spacing,
-    y: height - 150 - coord.y * spacing,
-  };
+function showModal(){
+  modal.classList.add("my-class");
 }
-
-function pixToCoords() {}
