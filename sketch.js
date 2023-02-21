@@ -1,5 +1,5 @@
 let beta1 = 0;
-let beta2 = 0;
+let beta2 = 0.6;
 let gamma1 = 1 / Math.sqrt(1 - beta1 * beta1);
 let gamma2 = 1 / Math.sqrt(1 - beta2 * beta2);
 const spacing = 45;
@@ -21,7 +21,7 @@ function setup() {
   strokeWeight(0.25);
   stroke(0);
   speedSlider = createSlider(-196, 196, 0);
-  speedSlider2 = createSlider(-196, 196, 0);
+  speedSlider2 = createSlider(-196, 196, 120);
   speedSlider.position(145, 598);
   speedSlider2.position(145, 638);
   speedSlider.parent("sliderPos");
@@ -39,7 +39,7 @@ function setup() {
   input1.position(80, 597);
   input1.style("width", "30px");
 
-  input2 = createInput("0");
+  input2 = createInput(".6");
   input2.parent("buttonPos2");
   input2.position(80, 637);
   input2.style("width", "30px");
@@ -91,15 +91,15 @@ function draw() {
         line(
           gamma1 * gamma1 * beta1 * i,
           gamma1 * gamma1 * i,
-          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i,
-          gamma1 * gamma1 * i + gamma1 * gamma1 * (beta2 - beta1) * i
+          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i *(1+beta2) * gamma2 * gamma2,
+          gamma1 * gamma1 * i + gamma1 * gamma1 * (beta2 - beta1) * i * (1+beta2) * gamma2 * gamma2
         );
       } else {
         line(
           gamma1 * gamma1 * beta1 * i,
           gamma1 * gamma1 * i,
-          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i,
-          gamma1 * gamma1 * i - gamma1 * gamma1 * (beta2 - beta1) * i
+          gamma1 * gamma1 * beta1 * i + gamma1 * gamma1 * (beta2 - beta1) * i *(1-beta2) * gamma2 * gamma2,
+          gamma1 * gamma1 * i - gamma1 * gamma1 * (beta2 - beta1) * i * (1-beta2) * gamma2 * gamma2
         );
       }
     }
