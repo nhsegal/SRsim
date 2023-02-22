@@ -14,24 +14,26 @@ let input2;
 let input3;
 let box1;
 let box2;
+let box3;
+let box4
 let modalButton;
 let span;
 
 function setup() {
-  let cnv = createCanvas(1200, 660);
+  let cnv = createCanvas(windowWidth, windowHeight-30)
   cnv.parent("myContainer");
   strokeWeight(0.25);
   stroke(0);
   speedSlider = createSlider(-196, 196, 0);
   speedSlider2 = createSlider(-196, 196, 120);
-  speedSlider.position(145, 598);
-  speedSlider2.position(145, 638);
+  speedSlider.position(145, height -63);
+  speedSlider2.position(145, height -23);
   speedSlider.parent("sliderPos");
   speedSlider2.parent("sliderPos2");
   speedSlider.style("width", "130px");
   speedSlider2.style("width", "130px");
   modalButton = createButton("Questions and Answers");
-  modalButton.position(width - 155, height - 20);
+  modalButton.position(width - 168, height - 16);
   modalButton.mousePressed(showModal)
 
   box1 = createCheckbox("", true);
@@ -39,19 +41,19 @@ function setup() {
   box3 = createCheckbox("", false);
   box4 = createCheckbox("", false);
 
-  box1.position(335, 598);
-  box2.position(335, 636);
-  box3.position(442, 598);
-  box4.position(442, 636);
+  box1.position(335, height - 64);
+  box2.position(335, height - 22);
+  box3.position(442, height - 64);
+  box4.position(442,  height - 22);
 
   input1 = createInput("0");
   input1.parent("buttonPos");
-  input1.position(84, 597);
+  input1.position(84, height -63);
   input1.style("width", "30px");
 
   input2 = createInput(".6");
   input2.parent("buttonPos2");
-  input2.position(84, 637);
+  input2.position(84, height - 23);
   input2.style("width", "30px");
   const modal = document.getElementById('modal');
   span = document.getElementsByClassName("close")[0];
@@ -71,7 +73,7 @@ function draw() {
   line(width, height, 0, height);
 
   push();
-  translate(width / 2, height - 150);
+  translate(width / 2, height - 160);
   scale(1, -1);
 
   //dotted lines for light cone
@@ -252,31 +254,31 @@ function draw() {
   pop();
   fill(255);
 
-  rect(0, height - 136, width - 3, 136);
+  rect(0, height - 136, width - 15, 136);
   fill(0);
   textSize(16);
   textAlign(CENTER);
-  text("Show Lines of\nSimultaneity", 336, 544);
-  text("Send Light \nSignals", 445, 544);
-  text("0", 206, 583);
+  text("Show Lines of\nSimultaneity", 336, height - 115);
+  text("Send Light \nSignals", 445, height - 115);
+  text("0", 204, height - 78);
   textSize(16);
-  text("-0.98c", 142, 583);
+  text("-0.98c", 144,height - 78);
   textSize(16);
-  text("0.98c", 268, 583);
+  text("0.98c", 266, height - 78);
   strokeWeight(1);
-  line(204, 590, 204, 610);
-  line(145, 590, 145, 610);
-  line(264, 590, 264, 610);
+  line(204, height - 70, 204, height - 52);
+  line(145, height - 70, 145, height - 52);
+  line(264, height - 70, 264, height - 52);
 
-  line(204, 630, 204, 650);
-  line(145, 630, 145, 650);
-  line(264, 630, 264, 650);
+  line(204, height - 30, 204, height - 12);
+  line(145, height - 30, 145, height - 12);
+  line(264, height - 30, 264, height - 12);
 
   strokeWeight(0.25);
-  text("Velocity:", 40, 605);
+  text("Velocity:", 40, height - 55);
   stroke(220, 0, 0);
   fill(220, 0, 0);
-  text("Velocity:", 40, 645);
+  text("Velocity:", 40, height - 15);
 }
 
 function setSpeed1() {
@@ -295,4 +297,23 @@ function setSpeed2() {
 
 function showModal(){
   modal.classList.add("my-class");
+}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight -30);
+  speedSlider.position(145, height -63);
+  speedSlider2.position(145, height -23);
+  modalButton.position(width - 168, height - 16);
+
+
+  box1.position(335, height - 64);
+  box2.position(335, height - 22);
+  box3.position(442, height - 64);
+  box4.position(442,  height - 22);
+
+ 
+  input1.position(84, height -63);
+
+  input2.position(84, height - 23);
+ 
+
 }
