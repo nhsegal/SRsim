@@ -254,7 +254,7 @@ function draw() {
   pop();
   fill(255);
 
-  rect(0, height - 136, width - 15, 136);
+  rect(5, height - 136, width - 5, 136);
   fill(0);
   textSize(16);
   textAlign(CENTER);
